@@ -61,12 +61,12 @@ def main():
 
     # statistics
     stats_parser = subparsers.add_parser("stats")
-    stats_parser.set_defaults(func=display_stats)
+    stats_parser.set_defaults(func=display_tasks)
 
     args = parser.parse_args()
     args.func(args)
 
-show_tasks(tasks)
+# show_tasks(tasks)
 
 if __name__ == "__main__":
     main()
