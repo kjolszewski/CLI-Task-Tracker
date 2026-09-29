@@ -1,11 +1,6 @@
 # starts program, parses command, calls appropriate functionality and displays results
 import json, requests, argparse
-from tabulate import tabulate 
-
-
-headers = ["ID", "Task", "Priority", "Due Date", "Status"]
-
-print(tabulate([], headers=headers, tablefmt="grid"))
+from display import show_tasks
 
 def add(args):
     print(f"Adding task...") 
@@ -70,6 +65,8 @@ def main():
 
     args = parser.parse_args()
     args.func(args)
+
+show_tasks(tasks)
 
 if __name__ == "__main__":
     main()
