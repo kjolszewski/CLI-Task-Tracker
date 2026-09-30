@@ -2,7 +2,7 @@ from tabulate import tabulate
 
 def show_tasks(tasks):
     rows = [
-        [task.id, task.name, task.status]
+        [task.id, task.name, task.priority, task.date, task.status]
         for task in tasks 
     ]
 

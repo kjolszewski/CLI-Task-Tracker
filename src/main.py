@@ -1,9 +1,9 @@
 # starts program, parses command, calls appropriate functionality and displays results
-import json, requests, argparse
+import requests, argparse
+from datetime import datetime, date
 from display import show_tasks
-
-def add(args):
-    print(f"Adding task...") 
+from storage import load_tasks, save_tasks
+from tasks import add
 
 def list_tasks(args):
     print(f"Listing tasks...")
@@ -23,6 +23,23 @@ def search_task(args):
 def display_tasks(args):
     print(f"Displaying tasks...")
 
+# validation
+def valid_date(value):
+    try:
+        parsed = datetime.strptime(value, "%d/%m/%Y").date()
+    except ValueError:
+        raise argparse.ArgumentTypeError(
+            "Date must be in DD/MM/YYYY format"
+        )
+
+    if parsed < date.today():
+        raise argparse.ArgumentTypeError(
+            "Date must be today or later"
+        )
+
+    return value
+ 
+# main
 def main():
     parser = argparse.ArgumentParser(description="CLI Task Tracker")
     subparsers = parser.add_subparsers(dest="command")
@@ -30,6 +47,15 @@ def main():
     # add
     add_parser = subparsers.add_parser("add")
     add_parser.add_argument("title")
+    add_parser.add_argument(
+        "priority", 
+        type=str.lower,
+        choices=["low", "medium", "high"], 
+        )
+    add_parser.add_argument(
+        "due_date",
+        type=valid_date
+        )
     add_parser.set_defaults(func=add)
 
     # list
