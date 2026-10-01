@@ -18,6 +18,9 @@ def add(args):
 
     print("Task added")
 
+def delete_task(args):
+    print(f"Deleting tasks...")
+
 def list_tasks(args):
     tasks = load_tasks()
     # display tasks
@@ -25,4 +28,13 @@ def list_tasks(args):
 def complete_task(args):
     # find task
     # mark complete
-    pass 
+    pass
+
+def edit_task(args):
+    print(f"Editting task...")
+
+def search_task(args):
+    print(f"Searching tasks...")
+
+def display_tasks(args):
+    print(f"Displaying tasks...")
