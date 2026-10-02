@@ -1,6 +1,7 @@
 # create task, find task, update task, delete task, complete task, search task and calculate statistics
 # task contains "ID", task, priority, due date, status
 from storage import load_tasks, save_tasks 
+from display import show_tasks
 
 def add_task(args):
     tasks = load_tasks()
@@ -32,7 +33,13 @@ def delete_task(args):
 
 def list_tasks(args):
     tasks = load_tasks()
-    # display tasks
+
+    if not tasks:
+        print("No task found")
+        return 
+
+    for task in tasks:
+        show_tasks(task)
 
 def complete_task(args):
     # find task
