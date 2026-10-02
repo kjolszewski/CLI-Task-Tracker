@@ -3,25 +3,7 @@ import requests, argparse
 from datetime import datetime, date
 from display import show_tasks
 from storage import load_tasks, save_tasks
-from tasks import add
-
-def list_tasks(args):
-    print(f"Listing tasks...")
-
-def complete_task(args):
-    print(f"Completed tasks...")
-
-def delete_task(args):
-    print(f"Deleting tasks...")
-
-def edit_task(args):
-    print(f"Editting task...")
-
-def search_task(args):
-    print(f"Searching tasks...")
-
-def display_tasks(args):
-    print(f"Displaying tasks...")
+from tasks import add_task, delete_task
 
 # validation
 def valid_date(value):
@@ -56,7 +38,7 @@ def main():
         "due_date",
         type=valid_date
         )
-    add_parser.set_defaults(func=add)
+    add_parser.set_defaults(func=add_task)
 
     # list
     list_parser = subparsers.add_parser("list")
@@ -69,7 +51,7 @@ def main():
 
     # delete
     delete_parser = subparsers.add_parser("delete")
-    delete_parser.add_argument("id", help="delete a task through its ID", type=int) 
+    delete_parser.add_argument("title", help="delete a task through its title", type=int) 
     delete_parser.set_defaults(func=delete_task)
 
     # edit
@@ -96,3 +78,16 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+"""
+class Dog:
+    def __init__(self, name):
+        self.name = name 
+
+    def bark(self):
+        print("Woof!")
+
+dog1 = Dog("Buddy")
+dog1.bark()
+"""
