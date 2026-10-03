@@ -57,9 +57,6 @@ def complete_task(args):
 
     print("Task not found")
 
-def edit_task(args):
-    print(f"Editting task...")
-
 def search_task(args):
     print(f"Searching tasks...")
 

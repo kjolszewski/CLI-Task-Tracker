@@ -54,14 +54,6 @@ def main():
     delete_parser.add_argument("title", help="delete a task through its title", type=int) 
     delete_parser.set_defaults(func=delete_task)
 
-    # edit
-    edit_parser = subparsers.add_parser("edit")
-    edit_parser.add_argument("id", help="find task to edit through its ID", type=int)
-    edit_parser.add_argument("--title")
-    edit_parser.add_argument("--priority")
-    edit_parser.set_defaults(func=edit_task)
-
-
     # search
     search_parser = subparsers.add_parser("search")
     search_parser.add_argument("query")
