@@ -14,6 +14,11 @@ def add_task(args):
         "completed": False
     }
 
+    for task in tasks:
+        if task["title"] == args.title and task["due_date"] == args.due_date:
+            print("A task of the same title and due date already exists")
+            return 
+
     tasks.append(task)
     save_tasks(tasks)
 
@@ -42,9 +47,15 @@ def list_tasks(args):
         show_tasks(task)
 
 def complete_task(args):
-    # find task
-    # mark complete
-    pass
+    tasks = load_tasks()
+
+    for task in tasks:
+        if task["title"] == args.title:
+            task["completed"] = True
+            print("Task marked as complete")
+            return 
+
+    print("Task not found")
 
 def edit_task(args):
     print(f"Editting task...")

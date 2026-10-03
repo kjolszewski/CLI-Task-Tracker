@@ -2,7 +2,7 @@
 import requests, argparse
 from datetime import datetime, date
 from display import show_tasks
-from storage import load_tasks, save_tasks
+from storage import load_tasks, save_tasks, complete_task
 from tasks import add_task, delete_task
 
 # validation
@@ -46,7 +46,7 @@ def main():
 
     # complete
     complete_parser = subparsers.add_parser("complete")
-    complete_parser.add_argument("id", help="mark a task as complete through its ID", type=int)
+    complete_parser.add_argument("title", help="mark a task as complete through its title", type=int)
     complete_parser.set_defaults(func=complete_task)
 
     # delete
